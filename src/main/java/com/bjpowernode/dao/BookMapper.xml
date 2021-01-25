@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bjpowernode.dao.BookMapper">
+    <insert id="addbook" parameterType="Books">
+        insert into ssmbuild.books(bookName, bookCounts, derail) values(#{bookName},#{bookCounts},#{derail})
+    </insert>
+    
+    <delete id="deleteBookById" parameterType="int">
+        delete from ssmbuild.books where bookid=#{bookId}
+    </delete>
+
+    <update id="updateBook" parameterType="Books">
+        update ssmbuild.books
+        set bookName=#{bookName},bookCounts=#{bookCounts},derail=#{derail}
+        where bookid=#{bookid}
+    </update>
+    
+    <select id="selectBookById" resultType="books">
+        select * from ssmbuild.books
+        where bookid=#{bookid}
+    </select>
+
+    <select id="getAllBook" resultType="books">
+        select * from ssmbuild.books
+    </select>
+
+    <select id="selectBookByname" resultType="Books">
+        select * from ssmbuild.books where bookName like '%${bookName}%';
+    </select>
+</mapper>
